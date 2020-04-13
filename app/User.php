@@ -2,16 +2,16 @@
 
 namespace App;
 
-use App\Notifications\VerifyUserNotification;
-use Carbon\Carbon;
-use Hash;
-use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
+use Hash;
 use Laravel\Passport\HasApiTokens;
+use App\Notifications\VerifyUserNotification;
 
 class User extends Authenticatable
 {
@@ -19,9 +19,39 @@ class User extends Authenticatable
 
     public $table = 'users';
 
-    protected $hidden = [
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'email',
         'password',
+        'created_at',
+        'updated_at',
+        'deleted_at',
         'remember_token',
+        'email_verified_at',
+        'notifications_frequency',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 
     protected $dates = [
@@ -34,18 +64,6 @@ class User extends Authenticatable
     const NOTIFICATIONS_FREQUENCY_RADIO = [
         'immediately' => '即時',
         'once'        => '每天一次',
-    ];
-
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'created_at',
-        'updated_at',
-        'deleted_at',
-        'remember_token',
-        'email_verified_at',
-        'notifications_frequency',
     ];
 
     public function __construct(array $attributes = [])
