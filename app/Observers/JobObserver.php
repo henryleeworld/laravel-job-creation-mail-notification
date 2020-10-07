@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use App\Job;
+use App\Models\Job;
+use App\Models\User;
 use App\Notifications\NewJobImmediateNotification;
-use App\User;
 use Notification;
 
 class JobObserver

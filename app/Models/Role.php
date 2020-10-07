@@ -1,16 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Observers\JobObserver;
 
-class Job extends Model
+class Role extends Model
 {
     use SoftDeletes;
 
-    public $table = 'jobs';
+    public $table = 'roles';
 
     protected $dates = [
         'created_at',
@@ -23,19 +22,15 @@ class Job extends Model
         'created_at',
         'updated_at',
         'deleted_at',
-        'description',
-        'contact_email',
     ];
 
-    public static function boot()
+    public function rolesUsers()
     {
-        parent::boot();
-
-        self::observe(new JobObserver);
+        return $this->belongsToMany(User::class);
     }
 
-    public function skills()
+    public function permissions()
     {
-        return $this->belongsToMany(Skill::class);
+        return $this->belongsToMany(Permission::class);
     }
 }

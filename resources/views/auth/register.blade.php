@@ -79,7 +79,7 @@
 
                     <div class="form-group">
                         <label class="required">{{ trans('cruds.user.fields.notifications_frequency') }}</label>
-                        @foreach(App\User::NOTIFICATIONS_FREQUENCY_RADIO as $key => $label)
+                        @foreach(App\Models\User::NOTIFICATIONS_FREQUENCY_RADIO as $key => $label)
                             <div class="form-check {{ $errors->has('notifications_frequency') ? 'is-invalid' : '' }}">
                                 <input class="form-check-input" type="radio" id="notifications_frequency_{{ $key }}" name="notifications_frequency" value="{{ $key }}" {{ old('notifications_frequency', 'once') === (string) $key ? 'checked' : '' }} required>
                                 <label class="form-check-label" for="notifications_frequency_{{ $key }}">{{ $label }}</label>

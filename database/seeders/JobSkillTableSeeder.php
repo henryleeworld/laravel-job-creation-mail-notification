@@ -1,7 +1,9 @@
 <?php
 
-use App\Job;
-use App\Skill;
+namespace Database\Seeders;
+
+use App\Models\Job;
+use App\Models\Skill;
 use Illuminate\Database\Seeder;
 
 class JobSkillTableSeeder extends Seeder
