@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Job;
+use App\Models\Job;
+use App\Models\User;
 use App\Notifications\NewJobsDailyNotification;
-use App\User;
 use Illuminate\Console\Command;
 
 class SendDailyJobsEmails extends Command

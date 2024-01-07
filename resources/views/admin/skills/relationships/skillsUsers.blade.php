@@ -76,7 +76,7 @@
                                 @endforeach
                             </td>
                             <td>
-                                {{ App\User::NOTIFICATIONS_FREQUENCY_RADIO[$user->notifications_frequency] ?? '' }}
+                                {{ App\Models\User::NOTIFICATIONS_FREQUENCY_RADIO[$user->notifications_frequency] ?? '' }}
                             </td>
                             <td>
                                 @can('user_show')

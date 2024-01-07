@@ -10,7 +10,7 @@
         <form method="POST" action="{{ route("admin.users.update", [$user->id]) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
-            <div class="form-group">
+            <div class="mb-3">
                 <label class="required" for="name">{{ trans('cruds.user.fields.name') }}</label>
                 <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $user->name) }}" required>
                 @if($errors->has('name'))
@@ -20,7 +20,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.name_helper') }}</span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label class="required" for="email">{{ trans('cruds.user.fields.email') }}</label>
                 <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="text" name="email" id="email" value="{{ old('email', $user->email) }}" required>
                 @if($errors->has('email'))
@@ -30,7 +30,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.email_helper') }}</span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label class="required" for="password">{{ trans('cruds.user.fields.password') }}</label>
                 <input class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" type="password" name="password" id="password">
                 @if($errors->has('password'))
@@ -40,7 +40,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.password_helper') }}</span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label class="required" for="roles">{{ trans('cruds.user.fields.roles') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
@@ -58,7 +58,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.roles_helper') }}</span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label for="skills">{{ trans('cruds.user.fields.skills') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
@@ -76,9 +76,9 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.skills_helper') }}</span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label class="required">{{ trans('cruds.user.fields.notifications_frequency') }}</label>
-                @foreach(App\User::NOTIFICATIONS_FREQUENCY_RADIO as $key => $label)
+                @foreach(App\Models\User::NOTIFICATIONS_FREQUENCY_RADIO as $key => $label)
                     <div class="form-check {{ $errors->has('notifications_frequency') ? 'is-invalid' : '' }}">
                         <input class="form-check-input" type="radio" id="notifications_frequency_{{ $key }}" name="notifications_frequency" value="{{ $key }}" {{ old('notifications_frequency', $user->notifications_frequency) === (string) $key ? 'checked' : '' }} required>
                         <label class="form-check-label" for="notifications_frequency_{{ $key }}">{{ $label }}</label>
@@ -91,7 +91,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.notifications_frequency_helper') }}</span>
             </div>
-            <div class="form-group">
+            <div class="mb-0">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>
